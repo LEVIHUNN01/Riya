@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>For Riya ♡</title>
+<meta name="theme-color" content="#ff7eae">
+
+<style>
+*{box-sizing:border-box}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+}
+
+body{
+  font-family:Georgia,"Times New Roman",serif;
+  background:linear-gradient(145deg,#fff8fb,#ffe5f0,#f7e8ff);
+  color:#643c50;
+}
+
+button{
+  font:inherit;
+  cursor:pointer;
+}
+
+#app{
+  height:100vh;
+  position:relative;
+  overflow:hidden;
+  background:
+  radial-gradient(circle at 15% 15%,#fff 0 3%,transparent 25%),
+  radial-gradient(circle at 90% 80%,#ffd8e8 0 3%,transparent 30%),
+  linear-gradient(145deg,#fff8fb,#ffe5f0 55%,#f7e8ff);
+}
+
+.noise{
+  position:absolute;
+  inset:0;
+  opacity:.12;
+  background-image:radial-gradient(#9c4d70 1px,transparent 1px);
+  background-size:18px 18px;
+  pointer-events:none;
+}
+
+.screen{
+  position:absolute;
+  inset:0;
+  padding:28px 22px 34px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  opacity:0;
+  pointer-events:none;
+  transform:scale(.96) translateY(18px);
+  transition:.7s ease;
+}
+
+.screen.active{
+  opacity:1;
+  pointer-events:auto;
+  transform:none;
+}
+
+.badge{
+  padding:8px 15px;
+  border-radius:30px;
+  background:#ffffffaa;
+  border:1px solid #fff;
+  backdrop-filter:blur(12px);
+  font:600 12px system-ui;
+  letter-spacing:1.4px;
+  color:#a64b72;
+}
+
+.heroHeart{
+  font-size:72px;
+  filter:drop-shadow(0 12px 18px #df5f9130);
+  animation:float 2.8s ease-in-out infinite;
+}
+
+h1{
+  font-size:clamp(42px,12vw,62px);
+  line-height:.98;
+  margin:18px 0 12px;
+  color:#d95488;
+}
+
+h1 span{
+  display:block;
+  font-size:.72em;
+  color:#9c5874;
+  margin-top:8px;
+}
+
+.subtitle{
+  font:15px/1.7 system-ui;
+  max-width:340px;
+  color:#7a5364;
+}
+
+.mainBtn{
+  margin-top:25px;
+  border:0;
+  border-radius:50px;
+  padding:16px 27px;
+  color:#fff;
+  background:linear-gradient(135deg,#ff79aa,#d84f88);
+  box-shadow:0 15px 30px #d84f8840;
+  font-weight:700;
+}
+
+.hint{
+  margin-top:12px;
+  font:11px system-ui;
+  color:#9a7181;
+}
+
+.card{
+  width:min(100%,390px);
+  padding:24px 21px;
+  border-radius:30px;
+  background:#ffffffb5;
+  border:1px solid #fff;
+  box-shadow:0 20px 60px #b94c7620;
+  backdrop-filter:blur(18px);
+}
+
+.cake{
+  font-size:65px;
+  animation:float 2.4s ease-in-out infinite;
+}
+
+.wishTitle{
+  font-size:43px;
+  margin:13px 0 15px;
+}
+
+.wishTitle small{
+  display:block;
+  font:700 14px system-ui;
+  letter-spacing:2px;
+  color:#9b6377;
+  margin-bottom:7px;
+}
+
+.message{
+  font:15px/1.75 system-ui;
+  color:#684757;
+}
+
+.signature{
+  margin-top:17px;
+  font-size:19px;
+  color:#d95488;
+}
+
+.actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:17px;
+}
+
+.action{
+  border:0;
+  border-radius:30px;
+  padding:12px 17px;
+  background:#fff;
+  color:#b34873;
+  box-shadow:0 8px 22px #9d45621b;
+  font:700 13px system-ui;
+}
+
+.music{
+  position:fixed;
+  right:17px;
+  top:17px;
+  border:0;
+  border-radius:50%;
+  width:45px;
+  height:45px;
+  background:#ffffffc9;
+  box-shadow:0 8px 25px #a74c7222;
+  color:#c34e7c;
+  z-index:20;
+}
+
+#surprise{
+  justify-content:flex-start;
+  padding-top:14vh;
+}
+
+.letter{
+  width:min(100%,390px);
+  max-height:68vh;
+  overflow:auto;
+  padding:27px 23px;
+  border-radius:25px;
+  background:#fffdfb;
+  color:#604453;
+  box-shadow:0 20px 60px #8d536325;
+  text-align:left;
+  transform:rotate(-.5deg);
+}
+
+.letter h2{
+  text-align:center;
+  color:#d95488;
+  margin:0 0 17px;
+  font-size:27px;
+}
+
+.letter p{
+  font:15px/1.8 system-ui;
+  margin:12px 0;
+}
+
+#final .big{
+  font-size:86px;
+  animation:pulse 1.4s infinite;
+}
+
+.finalText{
+  max-width:350px;
+  font:16px/1.8 system-ui;
+}
+
+.replay{
+  margin-top:15px;
+}
+
+.particle{
+  position:absolute;
+  pointer-events:none;
+  z-index:10;
+}
+
+.heartParticle{
+  bottom:-50px;
+  animation:rise linear forwards;
+}
+
+.conf{
+  top:-25px;
+  width:8px;
+  height:13px;
+  border-radius:2px;
+  animation:fall 3.6s linear forwards;
+}
+
+.star{
+  animation:twinkle 1.4s ease-in-out infinite;
+}
+
+@keyframes float{
+  50%{
+    transform:translateY(-10px) rotate(2deg);
+  }
+}
+
+@keyframes pulse{
+  50%{
+    transform:scale(1.12);
+  }
+}
+
+@keyframes rise{
+  to{
+    transform:translateY(-115vh) rotate(360deg);
+    opacity:0;
+  }
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(115vh) rotate(720deg);
+    opacity:0;
+  }
+}
+
+@keyframes twinkle{
+  50%{
+    opacity:.35;
+    transform:scale(.7);
+  }
+}
+
+@media(max-height:700px){
+  .screen{
+    padding-top:18px;
+    padding-bottom:18px;
+  }
+
+  .card{
+    padding:18px;
+  }
+
+  .message{
+    font-size:13px;
+    line-height:1.6;
+  }
+
+  .wishTitle{
+    font-size:35px;
+  }
+
+  .cake{
+    font-size:52px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+<div class="noise"></div>
+
+<button class="music" id="music">♫</button>
+
+<!-- HOME -->
+
+<section class="screen active" id="home">
+
+<div class="badge">
+A LITTLE SURPRISE FOR RIYA
+</div>
+
+<div class="heroHeart">
+💗
+</div>
+
+<h1>
+Hey Riya!
+<span>
+Someone made a little magic for you...
+</span>
+</h1>
+
+<p class="subtitle">
+A tiny birthday corner filled with warm wishes,
+happy moments and lots of love.
+</p>
+
+<button class="mainBtn" id="open">
+Open Your Birthday Gift ✨
+</button>
+
+<div class="hint">
+tap gently • something cute is waiting
+</div>
+
+</section>
+
+
+<!-- BIRTHDAY -->
+
+<section class="screen" id="wish">
+
+<div class="cake">
+🎂
+</div>
+
+<div class="card">
+
+<h1 class="wishTitle">
+
+<small>
+HAPPY BIRTHDAY
+</small>
+
+RIYA 💕
+
+</h1>
+
+<div class="message">
+
+Dear Riya Didi 🌷
+
+<br><br>
+
+Aaj ka din thoda extra special hai,
+kyunki aaj ek wonderful person ka birthday hai. ✨
+
+<br><br>
+
+May your days be full of genuine smiles,
+peaceful moments, beautiful memories
+and all the happiness you deserve.
+
+Hamesha aise hi sweet, kind aur lovely rehna. 🥹💗
+
+<br><br>
+
+I hope this little surprise makes you smile today.
+
+</div>
+
+<div class="signature">
+Have the cutest birthday ever! 🌸
+</div>
+
+</div>
+
+<div class="actions">
+
+<button class="action" id="more">
+Open My Letter 💌
+</button>
+
+<button class="action" id="celebrate">
+Celebrate 🎉
+</button>
+
+</div>
+
+</section>
+
+
+<!-- LETTER -->
+
+<section class="screen" id="surprise">
+
+<div class="letter">
+
+<h2>
+For Riya, with warm wishes 💌
+</h2>
+
+<p>
+Some people make ordinary moments feel a little brighter
+just by being themselves.
+</p>
+
+<p>
+So on your birthday, I just wish you lots of reasons to smile,
+people who genuinely care about you,
+and memories you will look back on with a happy heart.
+</p>
+
+<p>
+May this year bring you beautiful surprises,
+peaceful days and dreams that slowly turn into reality. 🌷
+</p>
+
+<p style="text-align:center;color:#d95488;font-weight:700">
+
+Keep smiling, Riya.
+You deserve a beautiful year ahead. ✨
+
+</p>
+
+</div>
+
+<button class="mainBtn" id="finalBtn">
+One Last Surprise 💖
+</button>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section class="screen" id="final">
+
+<div class="star" style="font-size:50px">
+✨
+</div>
+
+<div class="big">
+💖
+</div>
+
+<h1>
+Stay Happy, Riya!
+</h1>
+
+<p class="finalText">
+
+May your smile stay bright,
+your heart stay light,
+and your new year of life be filled
+with little moments that feel magical. 🌸
+
+</p>
+
+<button class="mainBtn replay" id="replay">
+Replay From Start ↻
+</button>
+
+</section>
+
+</div>
+
+
+<script>
+
+const $ = id => document.getElementById(id);
+
+const screens = document.querySelectorAll(".screen");
+
+let audio = null;
+let timer = null;
+let music = false;
+
+
+function show(id){
+
+screens.forEach(x => {
+x.classList.remove("active");
+});
+
+$(id).classList.add("active");
+
+}
+
+
+function hearts(n = 35){
+
+for(let i = 0; i < n; i++){
+
+setTimeout(() => {
+
+const e = document.createElement("div");
+
+e.className = "particle heartParticle";
+
+e.textContent =
+["💗","💕","💖","🌸","✨"]
+[Math.floor(Math.random()*5)];
+
+e.style.left =
+Math.random()*100 + "vw";
+
+e.style.fontSize =
+14 + Math.random()*20 + "px";
+
+e.style.animationDuration =
+4 + Math.random()*4 + "s";
+
+$("app").appendChild(e);
+
+setTimeout(() => e.remove(),8500);
+
+},i*70);
+
+}
+
+}
+
+
+function confetti(n = 90){
+
+for(let i = 0; i < n; i++){
+
+setTimeout(() => {
+
+const e = document.createElement("i");
+
+e.className = "particle conf";
+
+e.style.left =
+Math.random()*100 + "vw";
+
+e.style.background =
+[
+"#ff70a8",
+"#ffd166",
+"#c4b5fd",
+"#7dd3fc",
+"#fb7185"
+][Math.floor(Math.random()*5)];
+
+e.style.transform =
+"rotate("+Math.random()*360+"deg)";
+
+$("app").appendChild(e);
+
+setTimeout(() => e.remove(),4500);
+
+},i*12);
+
+}
+
+}
+
+
+function startMusic(){
+
+if(music) return;
+
+const C =
+window.AudioContext ||
+window.webkitAudioContext;
+
+if(!C) return;
+
+audio = new C();
+
+music = true;
+
+$("music").textContent = "♫";
+
+const notes = [
+523.25,
+659.25,
+783.99,
+659.25,
+587.33,
+698.46,
+880,
+698.46
+];
+
+let i = 0;
+
+
+function play(){
+
+if(!music) return;
+
+const o =
+audio.createOscillator();
+
+const g =
+audio.createGain();
+
+o.type = "sine";
+
+o.frequency.value =
+notes[i++ % notes.length];
+
+g.gain.setValueAtTime(
+.0001,
+audio.currentTime
+);
+
+g.gain.exponentialRampToValueAtTime(
+.045,
+audio.currentTime + .04
+);
+
+g.gain.exponentialRampToValueAtTime(
+.0001,
+audio.currentTime + .5
+);
+
+o.connect(g);
+
+g.connect(audio.destination);
+
+o.start();
+
+o.stop(
+audio.currentTime + .52
+);
+
+timer = setTimeout(play,560);
+
+}
+
+play();
+
+}
+
+
+function stopMusic(){
+
+music = false;
+
+clearTimeout(timer);
+
+if(audio){
+
+audio.close();
+
+audio = null;
+
+}
+
+$("music").textContent = "♫";
+
+}
+
+
+$("open").onclick = () => {
+
+show("wish");
+
+hearts(40);
+
+confetti(100);
+
+startMusic();
+
+};
+
+
+$("more").onclick = () => {
+
+show("surprise");
+
+hearts(25);
+
+};
+
+
+$("celebrate").onclick = () => {
+
+confetti(140);
+
+hearts(55);
+
+};
+
+
+$("finalBtn").onclick = () => {
+
+show("final");
+
+hearts(65);
+
+confetti(150);
+
+};
+
+
+$("replay").onclick = () => {
+
+show("home");
+
+stopMusic();
+
+};
+
+
+$("music").onclick = () => {
+
+music ? stopMusic() : startMusic();
+
+};
+
+</script>
+
+</body>
+</html>
