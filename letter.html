@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Letter 💌</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1, #f093fb);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+    padding: 30px 15px;
+    overflow-x: hidden;
+  }
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .hearts {
+    position: fixed; top:0; left:0;
+    width:100%; height:100%;
+    pointer-events:none; z-index:0; overflow:hidden;
+  }
+  .hearts span {
+    position: absolute; bottom:-50px;
+    animation: floatUp 12s linear infinite; opacity:0.7;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity:0; }
+    10% { opacity:0.8; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity:0; }
+  }
+  .container {
+    position: relative; z-index:1;
+    max-width: 700px; margin: 0 auto;
+  }
+  .progress {
+    background: rgba(255,255,255,0.4);
+    border-radius: 30px;
+    padding: 8px 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #862e9c;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+  }
+  .card {
+    background: rgba(255,255,255,0.28);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.5);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+    padding: 45px 25px;
+    text-align: center;
+    animation: fadeIn 1.5s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity:0; transform: translateY(40px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+  h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, #d6336c, #ae3ec9, #7048e8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 10px 0 20px;
+  }
+  p { color:#4a4a4a; font-size:1rem; line-height:1.8; margin:10px 0; }
+  .envelope {
+    width: 240px;
+    height: 160px;
+    background: linear-gradient(135deg, #f06595, #cc5de8);
+    margin: 25px auto;
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 15px 40px rgba(204, 93, 232, 0.5);
+    transition: transform 0.4s;
+  }
+  .envelope:hover { transform: scale(1.05); }
+  .envelope::before {
+    content:''; position:absolute;
+    top:0; left:0;
+    width:0; height:0;
+    border-left: 120px solid transparent;
+    border-right: 120px solid transparent;
+    border-top: 80px solid #d6336c;
+    border-radius: 12px 12px 0 0;
+  }
+  .envelope-heart {
+    position: absolute;
+    top:50%; left:50%;
+    transform: translate(-50%, -30%);
+    font-size: 2.5rem;
+    z-index: 2;
+  }
+  .letter {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease, padding 1s ease;
+    background: #fffaf0;
+    border-radius: 15px;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    margin-top: 15px;
+  }
+  .letter.open {
+    max-height: 800px;
+    padding: 25px;
+  }
+  .letter h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.7rem;
+    color: #c2255c;
+    margin-bottom: 15px;
+  }
+  .letter p {
+    font-size: 1rem;
+    line-height: 2;
+    color: #444;
+  }
+  .nav-btns {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  .nav-btn {
+    flex: 1;
+    min-width: 130px;
+    padding: 15px 20px;
+    border-radius: 50px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  .back-btn {
+    background: linear-gradient(45deg, #868e96, #495057);
+    box-shadow: 0 8px 20px rgba(73, 80, 87, 0.4);
+  }
+  .next-btn {
+    background: linear-gradient(45deg, #f06595, #cc5de8);
+    box-shadow: 0 8px 25px rgba(204, 93, 232, 0.5);
+  }
+  .nav-btn:hover { transform: translateY(-3px) scale(1.03); }
+  @media (max-width: 600px) {
+    .card { padding: 35px 18px; }
+    h1 { font-size: 2rem; }
+    .envelope { width: 200px; height: 135px; }
+    .envelope::before {
+      border-left: 100px solid transparent;
+      border-right: 100px solid transparent;
+      border-top: 68px solid #d6336c;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="container">
+  <div class="progress">📖 Page 3 of 5 — Love Letter</div>
+
+  <div class="card">
+    <h1>💌 A Letter For You 💌</h1>
+    <p>Envelope pe click karo — letter khulega 💗</p>
+
+    <div class="envelope" onclick="openLetter()">
+      <div class="envelope-heart">💗</div>
+    </div>
+    <div class="letter" id="letter">
+      <h3>Meri Pyari Aapi,</h3>
+      <p>
+        Aap meri life ka sabse khoobsurat hissa ho. Jab bhi main udaas hoti/hota hun, aapki ek smile sab theek kar deti hai. 
+        Aap meri sister nahi, meri best friend ho. 🌸
+      </p>
+      <p>
+        Main dua karti/karta hun ki aapki zindagi mein hamesha khushiyan rahein, 
+        aapke sapne pure hon, aur aapki smile kabhi kam na ho. 💗
+      </p>
+      <p>
+        Thank you for always being there for me. Hamesha khush raho aur apne saare sapne poore karo. 🌷
+      </p>
+      <p style="text-align:right;font-family:'Dancing Script';font-size:1.4rem;color:#c2255c;">
+        — Aapka/Aapki chhota/chhoti 💕
+      </p>
+    </div>
+
+    <div class="nav-btns">
+      <button class="nav-btn back-btn" onclick="window.location.href='wishes.html'">⬅️ Back</button>
+      <button class="nav-btn next-btn" onclick="window.location.href='reasons.html'">Next ➡️</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const heartsContainer = document.getElementById('hearts');
+  const emojis = ['💗','🌸','🦋','💕','🌷','✨','🎀','🧸'];
+  for (let i = 0; i < 25; i++) {
+    const span = document.createElement('span');
+    span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    span.style.left = Math.random() * 100 + '%';
+    span.style.animationDelay = Math.random() * 12 + 's';
+    span.style.animationDuration = (9 + Math.random() * 8) + 's';
+    span.style.fontSize = (14 + Math.random() * 24) + 'px';
+    heartsContainer.appendChild(span);
+  }
+
+  function openLetter() {
+    document.getElementById('letter').classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
