@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Aapi 💗</title>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1, #f093fb);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+    padding: 30px 15px;
+    overflow-x: hidden;
+  }
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .hearts {
+    position: fixed; top:0; left:0;
+    width:100%; height:100%;
+    pointer-events:none; z-index:0; overflow:hidden;
+  }
+  .hearts span {
+    position: absolute; bottom:-50px;
+    animation: floatUp 12s linear infinite; opacity:0.7;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity:0; }
+    10% { opacity:0.8; }
+    100% { transform: translateY(-110vh) rotate(360deg); opacity:0; }
+  }
+  .container {
+    position: relative; z-index:1;
+    max-width: 700px; margin: 0 auto;
+  }
+  .progress {
+    background: rgba(255,255,255,0.4);
+    border-radius: 30px;
+    padding: 8px 15px;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #862e9c;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+  }
+  .card {
+    background: rgba(255,255,255,0.28);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-radius: 30px;
+    border: 1px solid rgba(255,255,255,0.5);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+    padding: 45px 25px;
+    text-align: center;
+    animation: fadeIn 1.5s ease;
+  }
+  @keyframes fadeIn {
+    from { opacity:0; transform: translateY(40px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+  .cake {
+    font-size: 70px;
+    animation: bounce 2s infinite;
+    display: inline-block;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-18px); }
+  }
+  h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8rem;
+    background: linear-gradient(45deg, #d6336c, #ae3ec9, #7048e8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 15px 0;
+    line-height: 1.2;
+  }
+  h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    color: #c2255c;
+    margin: 20px 0 12px;
+  }
+  p { color:#4a4a4a; font-size:1rem; line-height:1.8; margin:10px 0; }
+  .divider {
+    font-size: 1.3rem;
+    margin: 20px 0;
+    letter-spacing: 8px;
+  }
+  .countdown {
+    display: flex; justify-content: center;
+    gap: 8px; margin: 20px 0; flex-wrap: wrap;
+  }
+  .count-box {
+    background: rgba(255,255,255,0.6);
+    border-radius: 15px;
+    padding: 10px 14px;
+    min-width: 65px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  .count-box .num {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #c2255c;
+  }
+  .count-box .lbl {
+    font-size: 0.7rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .message-box {
+    background: rgba(255,255,255,0.55);
+    border-radius: 20px;
+    padding: 22px;
+    margin: 20px 0;
+    border-left: 5px solid #f06595;
+    text-align: left;
+  }
+  .nav-btns {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+  .nav-btn {
+    flex: 1;
+    min-width: 130px;
+    padding: 15px 20px;
+    border-radius: 50px;
+    border: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    color: white;
+    transition: all 0.3s ease;
+  }
+  .back-btn {
+    background: linear-gradient(45deg, #868e96, #495057);
+    box-shadow: 0 8px 20px rgba(73, 80, 87, 0.4);
+  }
+  .next-btn {
+    background: linear-gradient(45deg, #f06595, #cc5de8);
+    box-shadow: 0 8px 25px rgba(204, 93, 232, 0.5);
+  }
+  .nav-btn:hover { transform: translateY(-3px) scale(1.03); }
+  @media (max-width: 600px) {
+    .card { padding: 35px 18px; }
+    h1 { font-size: 2.1rem; }
+    h2 { font-size: 1.4rem; }
+    p { font-size: 0.95rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hearts" id="hearts"></div>
+
+<div class="container">
+  <div class="progress">📖 Page 1 of 5 — Happy Birthday</div>
+
+  <div class="card">
+    <div class="cake">🎂</div>
+    <h1>Happy Birthday<br>Meri Pyari Aapi 💗</h1>
+    <div class="divider">🌸 🦋 💕 🦋 🌸</div>
+
+    <h2>Countdown to Your Day</h2>
+    <div class="countdown" id="countdown">
+      <div class="count-box"><div class="num" id="days">00</div><div class="lbl">Days</div></div>
+      <div class="count-box"><div class="num" id="hours">00</div><div class="lbl">Hours</div></div>
+      <div class="count-box"><div class="num" id="mins">00</div><div class="lbl">Mins</div></div>
+      <div class="count-box"><div class="num" id="secs">00</div><div class="lbl">Secs</div></div>
+    </div>
+
+    <div class="message-box">
+      <p>Aap meri life ki un special persons mein se ho jinke bina sab kuch thoda sa incomplete lagta hai. 🏻</p>
+      <p>Hamesha aise hi khush raho, smile karti raho aur apne saare dreams achieve karo. 🌸</p>
+    </div>
+
+    <div class="nav-btns">
+      <button class="nav-btn back-btn" onclick="window.location.href='index.html'">⬅️ Back</button>
+      <button class="nav-btn next-btn" onclick="window.location.href='wishes.html'">Next ➡️</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const heartsContainer = document.getElementById('hearts');
+  const emojis = ['💗','🌸','🦋','💕','🌷','✨','🎀','🧸'];
+  for (let i = 0; i < 25; i++) {
+    const span = document.createElement('span');
+    span.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    span.style.left = Math.random() * 100 + '%';
+    span.style.animationDelay = Math.random() * 12 + 's';
+    span.style.animationDuration = (9 + Math.random() * 8) + 's';
+    span.style.fontSize = (14 + Math.random() * 24) + 'px';
+    heartsContainer.appendChild(span);
+  }
+
+  /* APNI DATE YAHAN DAALO */
+  const birthdayDate = new Date("2025-12-31T00:00:00").getTime();
+  setInterval(() => {
+    const now = new Date().getTime();
+    const diff = birthdayDate - now;
+    if (diff > 0) {
+      document.getElementById('days').textContent = String(Math.floor(diff / (1000*60*60*24))).padStart(2,'0');
+      document.getElementById('hours').textContent = String(Math.floor((diff % (1000*60*60*24)) / (1000*60*60))).padStart(2,'0');
+      document.getElementById('mins').textContent = String(Math.floor((diff % (1000*60*60)) / (1000*60))).padStart(2,'0');
+      document.getElementById('secs').textContent = String(Math.floor((diff % (1000*60)) / 1000)).padStart(2,'0');
+    } else {
+      document.getElementById('countdown').innerHTML = '<p style="font-family:Dancing Script;font-size:1.6rem;color:#c2255c;">🎉 Aaj hi Birthday hai! 🎉</p>';
+    }
+  }, 1000);
+</script>
+
+</body>
+</html>
